@@ -17,10 +17,6 @@ pipeline {
 
     stages {
 
-<<<<<<< HEAD
-=======
-        
->>>>>>> d47a7d51f3d0e834fba2de514e35c519ede4f2fa
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME:latest .'
@@ -68,8 +64,3 @@ pipeline {
         }
     }
 }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> d47a7d51f3d0e834fba2de514e35c519ede4f2fa
