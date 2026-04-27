@@ -27,9 +27,9 @@ pipeline {
             steps {
                 sh '''
                 az login --service-principal \
-                -u $AZURE_CLIENT_ID \
-                -p $AZURE_CLIENT_SECRET \
-                --tenant $AZURE_TENANT_ID
+                -u $ARM_CLIENT_ID \
+                -p $ARM_CLIENT_SECRET \
+                --tenant $ARM_TENANT_ID 
                 '''
             }
         }
