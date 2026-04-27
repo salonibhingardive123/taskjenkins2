@@ -12,12 +12,7 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
-            steps {
-                git 'https://github.com/salonibhingardive123/taskjenkins2.git'
-            }
-        }
-
+        
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME:latest .'
