@@ -52,6 +52,12 @@ pipeline {
             }
         }
 
+
+        stage('Approval') {
+            steps {
+                input message: 'Do you want to deploy to production?', ok: 'Deploy'
+            }
+        }
         stage('Deploy to App Service') {
             steps {
                 sh '''
