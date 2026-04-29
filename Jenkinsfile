@@ -7,7 +7,7 @@ pipeline {
         IMAGE_NAME = "myapp"
         RESOURCE_GROUP = "SBJK11"
         APP_NAME = "jenkinstask11app"
-        IMAGE_TAG = "${BUILD_NUMBER}"
+        
 
         // Service Principal details
         ARM_CLIENT_ID = credentials('azure-client-id')
@@ -20,7 +20,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
+                sh 'docker build -t $IMAGE_NAME:latest .'
             }
         }
 
@@ -45,13 +45,13 @@ pipeline {
         //converting local image to registry format
         stage('Tag Image') {
             steps {
-                sh 'docker tag $IMAGE_NAME:$IMAGE_TAG $ACR_LOGIN_SERVER/$IMAGE_NAME:latest'
+                sh 'docker tag $IMAGE_NAME:latest $ACR_LOGIN_SERVER/$IMAGE_NAME:latest'
             }
         }
 
         stage('Push Image to ACR') {
             steps {
-                sh 'docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG'
+                sh 'docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:latest'
             }
         }
 
@@ -67,7 +67,7 @@ pipeline {
                 az webapp config container set \
                 --name $APP_NAME \
                 --resource-group $RESOURCE_GROUP \
-                --docker-custom-image-name $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
+                --docker-custom-image-name $ACR_LOGIN_SERVER/$IMAGE_NAME:latest
                 '''
             }
         }
