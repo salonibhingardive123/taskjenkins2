@@ -42,7 +42,7 @@ pipeline {
             }
         }
         
-        #converting local image to registry format
+        //converting local image to registry format
         stage('Tag Image') {
             steps {
                 sh 'docker tag $IMAGE_NAME:$IMAGE_TAG $ACR_LOGIN_SERVER/$IMAGE_NAME:latest'
